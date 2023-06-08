@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel='stylesheet' href='css/style.css'>
+
+    </head>
+    <body>
+        <form action="conversion" method="get">
+            <fieldset>
+                <legend>Currency Conversion</legend>
+                <div>
+                    <label for='cad'>$CAD</label> 
+                    <input type='text' name='cad' id='cad' required>  
+                </div>
+                <div class="currencies">
+                    <div>
+                        <label for='usd'>$ - USD</label>
+                        <input type='radio' value='usd' id='usd' name='currency'>
+                    </div>                
+                    <div>
+                        <label for='brl'>R$ - BRL</label>
+                        <input type='radio' value='brl' id='brl' name='currency'>
+                    </div>                
+                    <div>
+                        <label for='eur'>€ - EUR</label>
+                        <input type='radio' value='eur' id='eur' name='currency'>
+                    </div>  
+                </div>
+                <input type='submit' value='Convert'>
+            </fieldset>
+        </form>
+    </body>
+</html>
