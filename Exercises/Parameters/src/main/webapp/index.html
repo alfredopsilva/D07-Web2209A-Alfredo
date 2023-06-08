@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Parameters - Exercise</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel='stylesheet' href='css/style.css'>
+    </head>
+    <body>
+        <form action='sign-up' method='get'>
+            <fieldset>
+                <legend>Sign Up</legend>
+                <div>
+                    <label for='firstName'>First Name</label>
+                    <input type='text' id='firstName' name='firstName' required>
+                </div>
+                <div>
+                    <label for='lastName'>Last Name</label>
+                    <input type='text' id='lastName' name='lastName' required>
+                </div>
+                <div>
+                    <label for='course'>Course</label>
+                    <select name='course' id='course'>
+                        <option value='Java'>Java</option>
+                        <option value='C++'>C++</option>
+                        <option value='C#'>C#</option>
+                        <option value='Typescript'>Typescript</option>
+                        <option value='Fortran'>Fortran</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Time</label>
+                    <input type='radio' id='day' name='time' value="day">
+                    <label for='day'>Day</label>
+                    <input type='radio' id='night' name='time' value="night">
+                    <label for='night'>Night</label>
+                </div>
+                <div>
+                    <label>Semester</label>
+                    <input type='checkbox' id='fall' name='semester' value="fall">
+                    <label>Fall</label>
+                    <input type='checkbox' id='winter' name='semester' value="winter">
+                    <label>Winter</label>
+                    <input type='checkbox' id='summer' name='semester' value="summer">
+                    <label>Summer</label>
+                    <input type='checkbox' id='spring' name='semester' value="spring">
+                    <label>Spring</label>
+                </div>
+                <input type='submit' value='Sign Up'>
+            </fieldset> 
+    </body>
+</html>

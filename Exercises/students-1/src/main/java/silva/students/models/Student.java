@@ -5,82 +5,81 @@
 package silva.students.models;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.util.Objects;
+import javax.swing.text.DateFormatter;
+import silva.students.utility.Validation;
 
 /**
  *
  * @author alfredoparreira
  */
 public class Student {
-    
+
     //Threshold to generating ID's. 
-    private static int nextId = 1000; 
-    
-    private final int id; 
-    private String firstName; 
-    private String lastName; 
+    private static int nextId = 1000;
+
+    private final int id;
+    private String firstName;
+    private String lastName;
     private LocalDate dateOfBirth;
 
-  
-
+    //Constructor
     public Student(String firstName, String lastName, LocalDate dateOfBirth) {
         this.id = nextId++;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.dateOfBirth = dateOfBirth;
+        this.firstName = Objects.requireNonNull(firstName, "First Name can't be null.");
+        this.lastName = Objects.requireNonNull(lastName, "Last Name can't be null.");
+        this.dateOfBirth = Validation.checkDate(dateOfBirth);
     }
-    
-    
-    public int getId()
-    {
+
+    //Getters
+    public int getId() {
         return id;
     }
-    
-    public String getFirstName() 
-    {
+
+    public String getFirstName() {
         return firstName;
     }
-    
-    public String getLastName() 
-    {
+
+    public String getLastName() {
         return lastName;
     }
 
-    public LocalDate getDateOfBirth() 
-    {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
-    
-    public void setFirstName(String firstName) 
-    {
-        this.firstName = firstName;
-    }
-    
-    public void setLastName(String lastName) 
-    {
-        this.lastName = lastName;
+
+    public int getAge() {
+        LocalDate now = LocalDate.now();
+        Period period = Period.between(dateOfBirth, now);
+        return period.getYears();
     }
 
-    public void setDateOfBirth(LocalDate dateOfBirth) 
-    {
-        this.dateOfBirth = dateOfBirth;
-    }
-    
-    public int getAge()
-    {
-        LocalDate now = LocalDate.now(); 
-        return (int)ChronoUnit.YEARS.between(dateOfBirth,now);
-        
-        
+    public String getFullName() {
+        return firstName + " " + lastName;
     }
 
+    //Setters
+    public void setFirstName(String firstName) {
+        this.firstName = Validation.checkString(firstName);
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = Validation.checkString(lastName);
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = Validation.checkDate(dateOfBirth);
+    }
+
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    //To string
     @Override
     public String toString() {
-        return "Student " +  id + " " + firstName + " " + lastName + 
-                '\n' + "Date of Birth:" + dateOfBirth + 
-                '\n' + "Age:" + getAge();
+        return "Student : " + id 
+                + "<br>" +"Name : "+ getFullName()
+                + "<br>" + "Date of Birth : " + formatter.format(dateOfBirth)
+                + "<br>" + "Age : " + getAge();
     }
-    
-    
-    
 }

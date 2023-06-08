@@ -5,7 +5,6 @@
 package silva.students.repositories;
 
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.ArrayList;
 import silva.students.models.Student;
 
@@ -18,10 +17,15 @@ public class StudentsRepository
     
     public ArrayList<Student> getStudents()
     {   
+        //Creating ArrayList structure.
+        ArrayList<Student> students = new ArrayList<>(); 
         
-        var alfredo = new Student("Alfredo","Silva", LocalDate.of(1990, 9, 19));
-        var gabriela = new Student("Alfredo","Silva", LocalDate.of(1990, 9, 19));
-        var rehman = new Student("Alfredo","Silva", LocalDate.of(1990, 9, 19));
+        //Addings students to ArrayList
+        students.add(new Student("Alfredo","Silva", LocalDate.of(1990, 9, 19)));
+        students.add(new Student("Rehman","Basharat", LocalDate.of(2002, 9, 9)));
+        students.add(new Student("Ning","Zheng", LocalDate.of(1994, 12, 26)));
+        
+        return students;
     } 
     
 }
