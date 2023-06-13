@@ -18,7 +18,7 @@ import java.util.Objects;
 public class Student {
 
     //Threshold to generating ID's. 
-    private static int nextId = 1000;
+//    private static int nextId = 1000;
     private final String id;
     private String firstName;
     private String lastName;
@@ -26,8 +26,9 @@ public class Student {
     private boolean gratuate;
 
     //Constructor
-    public Student(String firstName, String lastName, LocalDate dateOfBirth, boolean graduate) {
-        this.id = Integer.toString(nextId++);
+    public Student(String id, String firstName, String lastName, LocalDate dateOfBirth, boolean graduate) {
+//        this.id = Integer.toString(nextId++);
+        this.id = id;
         this.firstName = Objects.requireNonNull(firstName, "First Name can't be null.");
         this.lastName = Objects.requireNonNull(lastName, "Last Name can't be null.");
         this.dateOfBirth = Validation.checkDate(dateOfBirth);
@@ -60,14 +61,18 @@ public class Student {
     public String getFullName() {
         return firstName + " " + lastName;
     }
+    public boolean isGraduate()
+    {
+        return gratuate;
+    }
 
     //Setters
     public void setFirstName(String firstName) {
-        this.firstName = Validation.checkString(firstName);
+        this.firstName = Validation.checkString(firstName, "Your first name must be valid.");
     }
 
     public void setLastName(String lastName) {
-        this.lastName = Validation.checkString(lastName);
+        this.lastName = Validation.checkString(lastName, "Your last name must be valid.");
     }
 
     public void setDateOfBirth(LocalDate dateOfBirth) {

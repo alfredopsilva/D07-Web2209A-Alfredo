@@ -14,11 +14,11 @@ import java.util.Objects;
 public class Validation {
     
     
-    public static String checkString(String value)
+    public static String checkString(String value, String message)
     {
        if(value == null || value.isBlank())
         {
-            throw new NullPointerException("First Name can't be null.");
+            throw new NullPointerException(message);
         }
        
        return value;
