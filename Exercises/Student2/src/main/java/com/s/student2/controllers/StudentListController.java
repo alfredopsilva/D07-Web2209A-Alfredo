@@ -35,7 +35,6 @@ public class StudentListController extends HttpServlet {
 
         StudentsRepository repository = new StudentsRepository();
 
-
         // Think on error -- always redirect to students.jsp if I don't have a valid Id.
 
         if(id == null || id.isBlank())

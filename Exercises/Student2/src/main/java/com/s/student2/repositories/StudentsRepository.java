@@ -18,6 +18,7 @@ public class StudentsRepository
 {
     private HashMap<String,Student> students;
 
+
     public StudentsRepository()
     {
         students = new HashMap<>();
@@ -30,6 +31,7 @@ public class StudentsRepository
 
         var ning = new Student("1002","Ning","Zheng", LocalDate.of(1994, 12, 26),false);
         students.put(ning.getId(),ning);
+
     }
 
 
