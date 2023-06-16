@@ -1,0 +1,64 @@
+body, p, legend, label, input {
+    font: normal 8pt verdana, helvetica, sans-serif;
+    text-align: left;
+}
+
+p.main {
+    font-size: 12pt;
+}
+
+form {
+    max-width: 500px;
+    margin: auto;
+}
+
+fieldset {
+    padding: 20px;
+    border: 1px solid #aaaaaa;
+    border-radius: 8px;
+}
+
+legend {
+    font-size: 12pt;
+    color: #4488dd;
+}
+
+form input {
+    width: 100%;
+    font-size: 12pt;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+form input[type=checkbox] {
+    width: auto;
+    margin: 4px;
+}
+
+form input[type=submit] {
+    width: 100%;
+    background-color: #33bb66;
+    color: white;
+    text-align: center;
+    font-size: 12pt;
+    padding: 16px 20px;
+    margin: 24px 0px 0px 0px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+form select {
+    width: 100%;
+    font-size: 12pt;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
