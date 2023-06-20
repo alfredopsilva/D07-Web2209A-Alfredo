@@ -25,10 +25,6 @@ public class Preference extends HttpServlet
     {
         // Retrieving Array of Cookies.
         Cookie[] cookies = request.getCookies();
-        for(Cookie cookie : cookies)
-        {
-            System.out.println(cookie.getName());
-        }
 
         // Retrieving Parameters
         String nameParameter = request.getParameter("name");
@@ -40,11 +36,15 @@ public class Preference extends HttpServlet
         Cookie color = getCookie(cookies,"color");
         Cookie remember = getCookie(cookies,"remember");
 
-        Cookie teste = new Cookie("teste","issoeumtest");
-        teste.setMaxAge(60);
-        response.addCookie(teste);
+        //Check if remember was checked. If it wasn't, delete all cookies.
+        if(!rememberParameter)
+        {
+            name.setMaxAge(0);
+            color.setMaxAge(0);
+            remember.setMaxAge(0);
+        }
 
-
+        //Checking if each cookie has or no a value, if it has
         if(name != null)
         {
             request.setAttribute("name",nameParameter);
@@ -52,38 +52,36 @@ public class Preference extends HttpServlet
         else
         {
             name = new Cookie("name", nameParameter);
-            name.setMaxAge(60 * 60 * 24 * 365);
+            name.setMaxAge(60);
             response.addCookie(name);
             request.setAttribute("name",nameParameter);
         }
 
         if(color != null)
         {
-            colorParameter = color.getValue();
             request.setAttribute("color", colorParameter);
         }
         else
         {
             color = new Cookie("color",colorParameter);
-            color.setMaxAge(60 * 60 * 24 * 365);
+            color.setMaxAge(60);
             response.addCookie(color);
             request.setAttribute("color",colorParameter);
         }
 
         if(remember != null)
         {
-            rememberParameter = Boolean.parseBoolean(remember.getValue());
             request.setAttribute("remember",rememberParameter);
         }
         else
         {
             remember = new Cookie("remember",Boolean.toString(rememberParameter));
-            remember.setMaxAge(60 * 60 * 24 * 365);
+            remember.setMaxAge(60);
             request.setAttribute("remember", Boolean.toString(rememberParameter));
             response.addCookie(remember);
         }
 
-        request.getRequestDispatcher("/remember").forward(request,response);
+        request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request,response);
 
     }
 
