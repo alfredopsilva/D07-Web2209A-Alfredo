@@ -17,68 +17,92 @@ public class Preference extends HttpServlet
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+
+        Cookie[] cookies = request.getCookies();
+
+        Cookie name = getCookie(cookies,"name");
+        Cookie color = getCookie(cookies,"color");
+
+        if(name != null)
+            request.setAttribute("name",name.getValue());
+
+        if(color != null)
+            request.setAttribute("color", color.getValue());
+
+
         request.getRequestDispatcher("WEB-INF/index.jsp").forward(request,response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        // Retrieving Array of Cookies.
-        Cookie[] cookies = request.getCookies();
 
         // Retrieving Parameters
         String nameParameter = request.getParameter("name");
-        boolean rememberParameter = Boolean.parseBoolean(request.getParameter("remember"));
+        String rememberParameter = request.getParameter("remember");
         String colorParameter = request.getParameter("color");
+        boolean remember = Boolean.parseBoolean(rememberParameter);
 
-        //Creating Cookies
-        Cookie name = getCookie(cookies,"name");
-        Cookie color = getCookie(cookies,"color");
-        Cookie remember = getCookie(cookies,"remember");
 
         //Check if remember was checked. If it wasn't, delete all cookies.
-        if(!rememberParameter)
+        if(rememberParameter != null && remember == true)
         {
-            name.setMaxAge(0);
-            color.setMaxAge(0);
-            remember.setMaxAge(0);
-        }
+            int cookieDuration = 60 * 60;
 
-        //Checking if each cookie has or no a value, if it has
-        if(name != null)
-        {
-            request.setAttribute("name",nameParameter);
+            Cookie nameCookie = new Cookie("name",nameParameter);
+            nameCookie.setMaxAge(cookieDuration);
+            response.addCookie(nameCookie);
+
+            Cookie colorCoookie = new Cookie("color",colorParameter);
+            colorCoookie.setMaxAge(cookieDuration);
+            response.addCookie(colorCoookie);
+
+            Cookie rememberCookie = new Cookie("remember",rememberParameter);
+            rememberCookie.setMaxAge(cookieDuration);
+            response.addCookie(rememberCookie);
         }
         else
         {
-            name = new Cookie("name", nameParameter);
-            name.setMaxAge(60);
-            response.addCookie(name);
-            request.setAttribute("name",nameParameter);
+            Cookie[] cookies = request.getCookies();
+            Cookie nameCookie = getCookie(cookies, "name");
+            if(nameCookie != null)
+            {
+                nameCookie.setMaxAge(0);
+                response.addCookie(nameCookie);
+            }
+
+            Cookie colorCookie = getCookie(cookies,"color");
+            if(colorCookie != null)
+            {
+                colorCookie.setMaxAge(0);
+                response.addCookie(colorCookie);
+            }
+
+            Cookie rememberCookie = getCookie(cookies,"remember");
+            if(rememberCookie != null)
+            {
+                rememberCookie.setMaxAge(0);
+                response.addCookie(rememberCookie);
+            }
         }
 
-        if(color != null)
+        if(nameParameter != null)
         {
-            request.setAttribute("color", colorParameter);
+            request.setAttribute("name",nameParameter);
         }
-        else
+        if(colorParameter != null)
         {
-            color = new Cookie("color",colorParameter);
-            color.setMaxAge(60);
-            response.addCookie(color);
             request.setAttribute("color",colorParameter);
         }
-
-        if(remember != null)
+        if(rememberParameter != null)
         {
-            request.setAttribute("remember",rememberParameter);
-        }
-        else
-        {
-            remember = new Cookie("remember",Boolean.toString(rememberParameter));
-            remember.setMaxAge(60);
-            request.setAttribute("remember", Boolean.toString(rememberParameter));
-            response.addCookie(remember);
+            if(remember){
+                request.setAttribute("remember","true");
+            }
+            else
+            {
+                request.setAttribute("remember", "false");
+            }
         }
 
         request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request,response);

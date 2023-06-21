@@ -10,7 +10,8 @@
 <%
     String name = (String)request.getAttribute("name");
     String color = (String)request.getAttribute("color");
-    boolean remember = (Boolean)request.getAttribute("remember");
+    String rememberParameter = (String)request.getAttribute("remember");
+    boolean remember = Boolean.parseBoolean(rememberParameter);
 %>
 
 
@@ -19,9 +20,8 @@
     <title>Title</title>
 </head>
 <body>
-    <h1 style="color:pink;">Teste</h1>
-    <%="<h1 style='color: " + color != null ? color : "black " + " ;>" + "Hello " + name + "</h1>" %>
     <% if(remember){%>
+        <h1 style="color:<%=color != null ? color : "black"%>">Hello <%=name%></h1>
         <p>We have remembered your name and color. They are stored in your cookies.</p>
         <ul>
             <li>Name: <%=name%></li>
@@ -30,6 +30,7 @@
     <%}
       else
       {%>
+        <h1 style="color:<%=color != null ? color : "black"%>">Hello <%=name%></h1>
         <p>We have forgotten your name and color. They are not stored in your cookies.</p>
     <%}%>
     <a href="preference">Return</a>
