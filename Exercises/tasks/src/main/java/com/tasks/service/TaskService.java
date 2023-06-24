@@ -4,10 +4,7 @@ import com.tasks.model.Task;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpSession;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 public class TaskService
 {
@@ -19,6 +16,7 @@ public class TaskService
     public TaskService(HttpSession session)
     {
         this.session = Objects.requireNonNull(session);
+        //TODO: Delete this message at the end
         session.setAttribute("message", "It's connect with Service.");
         tasks = (HashMap<String, Task>) session.getAttribute("tasks");
 
@@ -43,25 +41,27 @@ public class TaskService
             Task task = new Task(id, name, false);
             tasks.put(id,task);
             session.setAttribute("message", "Success ! Your task was properly created.");
+            session.setAttribute("tasks",tasks);
         }
 
     }
 
-    public void removeTask(UUID id)
+    public void removeTask(String id)
     {
         tasks.remove(id);
-        session.setAttribute("message", "Your task was sucessfully deleted.");
+        session.setAttribute("message", "Your task was successfully deleted.");
     }
 
-    public void completeTask(UUID id)
+    public void completeTask(String id)
     {
         if(tasks.containsKey(id))
         {
             tasks.get(id).setComplete(true);
+            session.setAttribute("message","Your task was successfully completed.");
         }
     }
 
-    public void resetTask(UUID id)
+    public void resetTask(String id)
     {
         if(tasks.containsKey(id))
         {
@@ -79,7 +79,9 @@ public class TaskService
             return null;
         }
 
-        return new ArrayList<>(tasks.values());
+        ArrayList<Task> listTasks = new ArrayList<>(tasks.values());
+        listTasks.sort(Comparator.comparing(Task::getName));
+        return listTasks;
     }
 
 }

@@ -1,5 +1,6 @@
 package com.tasks.controller;
 
+import com.tasks.model.Task;
 import com.tasks.service.TaskService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -9,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 @WebServlet(name="TaskController", urlPatterns = {"","/task"})
 public class TaskController extends HttpServlet
@@ -18,6 +20,10 @@ public class TaskController extends HttpServlet
     {
         HttpSession session = request.getSession(true);
         TaskService taskService = new TaskService(session);
+        request.setAttribute("tasksList", taskService.getTasks());
+        String id = (String)request.getParameter("id");
+        session.setAttribute("id",id);
+
         request.getRequestDispatcher("WEB-INF/index.jsp").forward(request,response);
     }
 
@@ -28,6 +34,13 @@ public class TaskController extends HttpServlet
         String taskName = request.getParameter("taskName");
         TaskService taskService = new TaskService(session);
         taskService.addTask(taskName);
+        session.setAttribute("taskList",taskService.getTasks());
         request.getRequestDispatcher("WEB-INF/index.jsp").forward(request,response);
     }
+
+    protected void processRequest(String action, String Id, HashMap<String, Task> tasks)
+    {
+
+    }
+
 }

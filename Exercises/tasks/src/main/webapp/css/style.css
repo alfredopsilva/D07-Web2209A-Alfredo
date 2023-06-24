@@ -57,3 +57,9 @@ form input[type=submit] {
     border-radius: 4px;
     cursor: pointer;
 }
+
+.message
+{
+    text-align: center;
+    margin-top: 15px;
+}
