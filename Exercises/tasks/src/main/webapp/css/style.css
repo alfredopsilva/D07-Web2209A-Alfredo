@@ -1,14 +1,31 @@
 body, p, legend, label, input {
     font: normal 8pt verdana, helvetica, sans-serif;
     text-align: left;
+    margin: 0;
 }
 
 li {
     padding: 8px 0px;
 }
 
-.task {
+.task{
     font-size: 12pt;
+}
+
+a {
+    font-size: 11px;
+    color: dodgerblue;
+}
+
+.links
+{
+    margin-top: 05px;
+}
+
+
+.links a:last-child
+{
+    margin-left: 10px;
 }
 
 .task.complete {
@@ -62,4 +79,14 @@ form input[type=submit] {
 {
     text-align: center;
     margin-top: 15px;
+}
+
+.message.sucess
+{
+    color:forestgreen;
+}
+
+.message.error
+{
+    color:orangered;
 }

@@ -17,7 +17,7 @@ public class TaskService
     {
         this.session = Objects.requireNonNull(session);
         //TODO: Delete this message at the end
-        session.setAttribute("message", "It's connect with Service.");
+        //noinspection unchecked
         tasks = (HashMap<String, Task>) session.getAttribute("tasks");
 
         if(tasks == null)
@@ -27,29 +27,46 @@ public class TaskService
         }
     }
 
-    //Methods
-    public void addTask(String name)
-    {
 
-        if(tasks.containsValue(name))
+    //Methods
+    public void addTask(String name) {
+        //TODO: It's a verbose solution. Refactor this code when it's finished,.
+        ArrayList<Task> arrayTask = new ArrayList<>(tasks.values());
+        boolean containName = false;
+
+        //TODO: How to make the same search if my value into this Hashmap is a Task.
+        for (Task task : arrayTask) {
+            if (task.getName().toLowerCase().equals(name.toLowerCase())) {
+                containName = true;
+                break;
+            }
+
+        }
+        if(!containName)
         {
-            session.setAttribute("message", "Error ! This task is already in your TodoList.");
+            String id = UUID.randomUUID().toString();
+            Task newTask = new Task(id, name, false);
+            tasks.put(id, newTask);
+            session.setAttribute("message", "Success ! Your task was properly created.");
+            session.setAttribute("tasks", tasks);
+            session.setAttribute("status", 200);
+
         }
         else
         {
-            String id = UUID.randomUUID().toString();
-            Task task = new Task(id, name, false);
-            tasks.put(id,task);
-            session.setAttribute("message", "Success ! Your task was properly created.");
-            session.setAttribute("tasks",tasks);
-        }
+            session.setAttribute("message", "Error ! Your TodoList already contain this task.");
+            session.setAttribute("status", 400);
 
+
+        }
     }
 
     public void removeTask(String id)
     {
         tasks.remove(id);
-        session.setAttribute("message", "Your task was successfully deleted.");
+        session.setAttribute("message", "Sucess ! Your task was successfully deleted.");
+        session.setAttribute("status", 200);
+
     }
 
     public void completeTask(String id)
@@ -57,7 +74,9 @@ public class TaskService
         if(tasks.containsKey(id))
         {
             tasks.get(id).setComplete(true);
-            session.setAttribute("message","Your task was successfully completed.");
+            session.setAttribute("message","Sucess! Your task was successfully completed.");
+            session.setAttribute("status", 200);
+
         }
     }
 
@@ -68,6 +87,8 @@ public class TaskService
             if(tasks.get(id).isComplete())
             {
                 tasks.get(id).setComplete(false);
+                session.setAttribute("message","Sucess! Your task was successfully reseted.");
+                session.setAttribute("status", 200);
             }
         }
     }

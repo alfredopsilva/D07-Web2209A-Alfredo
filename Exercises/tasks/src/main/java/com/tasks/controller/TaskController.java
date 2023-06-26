@@ -18,11 +18,35 @@ public class TaskController extends HttpServlet
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+        //Starting Session and TaskService.
         HttpSession session = request.getSession(true);
         TaskService taskService = new TaskService(session);
+
+        //Setting an Initial TaskList.
         request.setAttribute("tasksList", taskService.getTasks());
+
+        // Getting Parameters from Hyperlinks.
+        String action = (String)request.getParameter("action");
         String id = (String)request.getParameter("id");
-        session.setAttribute("id",id);
+
+       // Switch with Procedures options.
+       if(action != null)
+       {
+           switch (action)
+           {
+               case "remove":
+                   taskService.removeTask(id);
+                   session.setAttribute("taskList",taskService.getTasks());
+                   request.getRequestDispatcher("WEB-INF/index.jsp").forward(request,response);
+                   break;
+               case "reset":
+                   taskService.resetTask(id);
+                   break;
+               case "complete":
+                   taskService.completeTask(id);
+                   break;
+           }
+       }
 
         request.getRequestDispatcher("WEB-INF/index.jsp").forward(request,response);
     }
@@ -30,17 +54,18 @@ public class TaskController extends HttpServlet
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+        //Retrieving Session and Creating a TaskService.
         HttpSession session = request.getSession(true);
         String taskName = request.getParameter("taskName");
         TaskService taskService = new TaskService(session);
+
+        //Calling AddTask
         taskService.addTask(taskName);
+
+        //Setting List with Tasks.
         session.setAttribute("taskList",taskService.getTasks());
+
+
         request.getRequestDispatcher("WEB-INF/index.jsp").forward(request,response);
     }
-
-    protected void processRequest(String action, String Id, HashMap<String, Task> tasks)
-    {
-
-    }
-
 }

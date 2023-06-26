@@ -4,7 +4,15 @@
 <%
     String message = (String)session.getAttribute("message");
     ArrayList<Task> taskList = (ArrayList<Task>) session.getAttribute("taskList");
-    String id = (String)session.getAttribute("id");
+    int status = 0;
+    if(session.getAttribute("status") != null)
+    {
+        status = (int)session.getAttribute("status");
+    }
+//    int status = 0;
+//    if(stringStatus != null){
+//        status = Integer.parseInt(stringStatus);
+//    }
 %>
 <!DOCTYPE html>
 <html>
@@ -18,7 +26,10 @@
             <legend>Add Task</legend>
             <input type="text" name="taskName" id="task">
             <input type="submit" value="Add" name="action">
-            <p class="message"><%=message%></p>
+            <%if(message != null){%>
+                <p class="message <%=status == 200 ? "sucess" : "error"%>" ><%=message%></p>
+                <%System.out.println(status);%>
+            <%}%>
         </fieldset>
     </form>
     <form action="">
@@ -28,14 +39,13 @@
                 <%if(taskList != null){%>
                     <%for(Task task : taskList){%>
                     <li>
-                        <p><%=task.getName()%></p>
-                        <div>
+                        <p class="<%=task.isComplete() ? "task complete" : "task"%>"><%=task.getName()%></p>
+                        <div class="links">
                             <a href="task?id=<%=task.getId() + "&action=remove"%>">Remove</a>
                             <a href="task?id=<%=task.getId()%>&action=<%=task.isComplete() ? "reset" : "complete"%>">
                                 <%=task.isComplete() ? "Reset" : "Complete"%>
                             </a>
                         </div>
-                        <%="ID " + id +"</p>"%>
                     </li>
                     <%}%>
                 <%}%>
