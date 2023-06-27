@@ -1,0 +1,25 @@
+body, p, legend, label, input {
+    font: normal 8pt verdana, helvetica, sans-serif;
+    text-align: left;
+}
+
+p.main {
+    font-size: 12pt;
+}
+
+th {
+    color: #fff;
+    background-color: #666;
+}
+
+th, td {
+    padding: 8px;
+}
+
+col.col0 {
+    background-color: #ddd;
+}
+
+col.col1 {
+    background-color: #eee;
+}
