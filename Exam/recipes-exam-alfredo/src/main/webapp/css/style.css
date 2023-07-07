@@ -1,0 +1,212 @@
+body {
+    font: normal 10pt verdana, helvetica, sans-serif;
+    text-align: left;
+}
+
+/* Flex */
+
+.container {
+    display: flex;
+    align-items: flex-start;
+}
+
+.container.vertical {
+    flex-direction: column;
+}
+
+.container.horizontal {
+    flex-direction: row;
+}
+
+/* Header */
+
+header.container {
+    margin: auto;
+    align-items: center;
+}
+
+nav ul {
+    padding: 0px;
+    margin: 0px;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    background: lightgrey;
+    border-radius: 25px;
+}
+
+nav ul li a {
+    color: black;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Likes */
+
+table.likes img {
+    max-height: 60px;
+}
+
+table.likes td {
+    border: none;
+    padding: 10px;
+}
+
+/* Content: Categories and recipes */
+
+.content.container.vertical {
+    align-items: center;
+    margin: auto;
+}
+
+/* Categories */
+
+.categories {
+    margin-bottom: 20px;
+}
+
+.category {
+    display: inline-block;
+    padding: 10px;
+    margin: 10px;
+    vertical-align: top;
+    text-align: center;
+    border: 1px solid lightgrey;
+    min-width: 120px;
+}
+
+.category h2 {
+    margin: 0px 8px 8px 8px;
+}
+
+.category a {
+    color: black;
+    text-decoration: none;
+}
+
+.category a:hover {
+    text-decoration: underline;
+}
+
+.category.selected {
+    border: 1px solid #4488dd;
+}
+
+.category img {
+    max-width: 120px;
+    max-height: 80px;
+}
+
+/* Recipes */
+
+.recipes {
+    align-items: center;
+}
+
+.recipe {
+    padding: 10px;
+    margin: 20px 0px;
+    border: 1px solid lightgrey;
+    display: inline-block;
+    vertical-align: top;
+    min-width: 90%;
+    width: 90%;
+}
+
+.recipe img {
+    float: right;
+    max-width: 200px;
+}
+
+/* Forms, field sets */
+
+form.main-form {
+    max-width: 400px;
+    margin: auto;
+}
+
+.form__login
+{
+    max-width: 400px;
+    margin: auto;
+}
+
+fieldset {
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid #aaaaaa;
+    border-radius: 4px;
+}
+
+legend {
+    font-size: 12pt;
+    color: #4488dd;
+}
+
+input, textarea, select, button, a.button {
+    padding: 12px 20px;
+    border-radius: 4px;
+}
+
+form input, textarea, select, button {
+    width: 100%;
+    font-size: 12pt;
+}
+
+input, textarea, select {
+    margin: 8px 0px;
+    display: inline-block;
+    border: 1px solid #cccccc;
+    box-sizing: border-box;
+}
+
+button, a.button {
+    background-color: #33bb66;
+    color: white;
+    text-align: center;
+    border: none;
+}
+
+button {
+    font-size: 12pt;
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+a.button {
+    text-decoration: none;
+}
+
+.danger {
+    background-color: #ee4444;
+}
+
+.success {
+    color: green;
+}
+
+.error {
+    color: red;
+}
+
+..recipe__buttons
+{
+    margin-top: 15px;
+}
+
+.recipe__button
+{
+    background-color:#cccccc;
+    color: #000;
+    padding: 14px;
+    border: 1px solid #a7a5a5;
+    border-radius: 10px;
+    text-transform: none;
+
+}
