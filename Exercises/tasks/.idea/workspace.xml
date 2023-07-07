@@ -12,9 +12,11 @@
     <list default="true" id="ba23affd-f41a-4809-8467-60d6a869fd62" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tasks/controller/TaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tasks/controller/TaskController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tasks/service/TaskService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tasks/service/TaskService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vehicles/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../vehicles/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vehicles/src/main/java/com/vehicles/controllers/VehicleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../vehicles/src/main/java/com/vehicles/controllers/VehicleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vehicles/src/main/java/com/vehicles/models/Vehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/../vehicles/src/main/java/com/vehicles/models/Vehicle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vehicles/src/main/java/com/vehicles/repositories/VehicleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../vehicles/src/main/java/com/vehicles/repositories/VehicleRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vehicles/src/main/webapp/WEB-INF/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../vehicles/src/main/webapp/WEB-INF/index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,6 +184,12 @@
       <workItem from="1687702479219" duration="498000" />
       <workItem from="1687716376314" duration="162000" />
       <workItem from="1687729242825" duration="323000" />
+      <workItem from="1687865721630" duration="10000" />
+      <workItem from="1687877985562" duration="606000" />
+      <workItem from="1687897190940" duration="1104000" />
+      <workItem from="1688406224289" duration="17000" />
+      <workItem from="1688746587893" duration="1282000" />
+      <workItem from="1688753092292" duration="397000" />
     </task>
     <servers />
   </component>
@@ -198,16 +206,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/tasks/controller/TaskController.java</url>
-          <line>34</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

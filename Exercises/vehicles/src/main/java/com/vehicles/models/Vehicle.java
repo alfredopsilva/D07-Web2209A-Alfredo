@@ -9,10 +9,10 @@ public class Vehicle {
     private int brandId;
     private String model;
     private float price;
-    private LocalDate year ;
+    private int year ;
 
     //Constructors
-    public Vehicle(int brand_id, String model, float price, LocalDate year) {
+    public Vehicle(int brand_id, String model, float price, int year) {
         this.brandId = brand_id;
         this.model = model;
         this.price = price;
@@ -28,12 +28,12 @@ public class Vehicle {
     }
 
     //TODO: Why just this constructor have validation of Objects.requireNonNull.
-    public Vehicle(int id, int brandId, String model, float price, LocalDate year) {
+    public Vehicle(int id, int brandId, String model, float price, int year) {
         this.id = id;
         this.brandId = brandId;
         this.model = Objects.requireNonNull(model);
         this.price = price;
-        this.year = Objects.requireNonNull(year);
+        this.year = year;
     }
 
     public int getId() {
@@ -48,7 +48,7 @@ public class Vehicle {
         return model;
     }
 
-    public LocalDate getYear() {
+    public int getYear() {
         return year;
     }
 

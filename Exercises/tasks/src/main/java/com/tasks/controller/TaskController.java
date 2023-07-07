@@ -23,7 +23,6 @@ public class TaskController extends HttpServlet
         TaskService taskService = new TaskService(session);
 
         //Setting an Initial TaskList.
-        request.setAttribute("tasksList", taskService.getTasks());
 
         // Getting Parameters from Hyperlinks.
         String action = (String)request.getParameter("action");
@@ -36,8 +35,6 @@ public class TaskController extends HttpServlet
            {
                case "remove":
                    taskService.removeTask(id);
-                   session.setAttribute("taskList",taskService.getTasks());
-                   request.getRequestDispatcher("WEB-INF/index.jsp").forward(request,response);
                    break;
                case "reset":
                    taskService.resetTask(id);
@@ -48,6 +45,7 @@ public class TaskController extends HttpServlet
            }
        }
 
+        request.setAttribute("tasksList", taskService.getTasks());
         request.getRequestDispatcher("WEB-INF/index.jsp").forward(request,response);
     }
 

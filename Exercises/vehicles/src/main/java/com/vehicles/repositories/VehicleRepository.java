@@ -12,8 +12,9 @@ public class VehicleRepository {
     private final String username;
     private final String password;
 
-    public VehicleRepository(String connectionUrl, String username, String password) {
-        String databaseName = "vehicles_db";
+    public VehicleRepository()
+    {
+        String databaseName = "dev_store";
         this.connectionUrl = "jdbc:mariadb://localhost:3306/" + databaseName;
         this.username = "root";
         this.password = "admin";
@@ -24,10 +25,9 @@ public class VehicleRepository {
         Class.forName("org.mariadb.jdbc.Driver");
         try(Connection connection = DriverManager.getConnection(connectionUrl,username,password))
         {
-            String query = "SELECT v.id, b.name AS \"brand\", model, year, price" +
-                    "FROM vehicles v " +
-                    "JOIN brands b on b.id = v.brand_id" +
-                    "WHERE v.id = ?";
+            String query = "SELECT id, brand_id, model, year, price  " +
+                           "FROM vehicles  " +
+                           "WHERE id = ?";
 
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, id);
@@ -40,14 +40,38 @@ public class VehicleRepository {
         }
     }
 
+    public ArrayList<Vehicle> getVehiclesByBrand(int brandId) throws ClassNotFoundException, SQLException
+    {
+        Class.forName("org.mariadb.jdbc.Driver");
+        try(Connection connection = DriverManager.getConnection(connectionUrl,username,password))
+        {
+            String query = "SELECT id, brand_id, model, year, price \n" +
+                           "FROM vehicles \n" +
+                           "WHERE brand_id = ?";
+
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1,brandId);
+
+            ResultSet resultSet = statement.executeQuery();
+            ArrayList<Vehicle> vehicles = new ArrayList<>();
+
+            while(resultSet.next())
+                vehicles.add(readNextVehicle(resultSet));
+
+            if(vehicles.isEmpty())
+                return null;
+
+            return vehicles;
+        }
+    }
     public ArrayList<Vehicle> getVehicles() throws ClassNotFoundException, SQLException
     {
         Class.forName("org.mariadb.jdbc.Driver");
         try(Connection connection = DriverManager.getConnection(connectionUrl,username, password))
         {
-            String query = "SELECT v.id, b.name AS \"brand\", model, year, price" +
-                    "FROM vehicles v " +
-                    "JOIN brands b on b.id = v.brand_id";
+            String query = "SELECT id, brand_id, model, year, price \n" +
+                           "FROM vehicles";
+
 
             PreparedStatement statement = connection.prepareStatement(query);
 
@@ -122,22 +146,21 @@ public class VehicleRepository {
         }
     }
 
-    private int getGeneratedId(PreparedStatement statement) throws SQLException
-    {
-        try(ResultSet generatedKeys = statement.getGeneratedKeys())
-        {
-            if(generatedKeys.next())
-                return generatedKeys.getInt(1);
-            throw new SQLException("Created Vehicle but failed to read generated Id.");
+        private int getGeneratedId(PreparedStatement statement) throws SQLException {
+            try(ResultSet generatedKeys = statement.getGeneratedKeys())
+            {
+                if(generatedKeys.next())
+                    return generatedKeys.getInt(1);
+                throw new SQLException("Created Vehicle but failed to read generated Id.");
+            }
         }
-    }
     private Vehicle readNextVehicle(ResultSet resultSet) throws SQLException
     {
-         int id = resultSet.getInt("v.id");
-         int brandId = resultSet.getInt("b.id");
+         int id = resultSet.getInt("id");
+         int brandId = resultSet.getInt("brand_id");
          String model = resultSet.getString("model");
          float price = resultSet.getFloat("price");
-         LocalDate year = resultSet.getDate("year").toLocalDate();
+         int year = resultSet.getInt("year");
 
          return new Vehicle(id, brandId, model, price, year);
     }
