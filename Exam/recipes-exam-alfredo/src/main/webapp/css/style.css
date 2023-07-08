@@ -195,7 +195,7 @@ a.button {
     color: red;
 }
 
-..recipe__buttons
+.recipe__buttons
 {
     margin-top: 15px;
 }
@@ -209,4 +209,52 @@ a.button {
     border-radius: 10px;
     text-transform: none;
 
+}
+
+.recipe__img
+{
+    max-width: 225px;
+}
+.recipe__categories
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.recipes, .recipe__welcome{
+    max-width: 80%;
+    margin: auto;
+}
+
+.recipe__subtitle
+{
+    font-size: 18px;
+    text-align: center;
+}
+
+.recipe__categorieBox
+{
+    border: 1px solid #a7a5a5;
+    margin: 10px;
+}
+
+.recipe__box
+{
+    display: flex;
+    border: 2px solid #a7a5a5;
+    max-width: 80%;
+    margin: 25px auto;
+    padding: 20px;
+
+}
+
+.recipe__box-img
+{
+    max-width: 300px;
+}
+
+.form__add
+{
+    max-width: 400px;
+    margin: auto;
 }

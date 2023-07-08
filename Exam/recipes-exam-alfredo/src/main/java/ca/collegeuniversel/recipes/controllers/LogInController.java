@@ -44,7 +44,9 @@ public class LogInController extends HttpServlet
                 {
                     HttpSession session = request.getSession(true);
                     session.setAttribute("loggedUser", loggedUser);
-                    request.getRequestDispatcher("WEB-INF/recipes.jsp").forward(request,response);
+                    String path = request.getContextPath()+"/recipes";
+//                    request.getRequestDispatcher(path).forward(request,response);
+                    response.sendRedirect(path);
                 }
 
             }
@@ -63,7 +65,6 @@ public class LogInController extends HttpServlet
             request.setAttribute("error-message",e.getMessage());
             request.getRequestDispatcher("WEB-INF/login.jsp").forward(request,response);
         }
-
 
     }
 }
