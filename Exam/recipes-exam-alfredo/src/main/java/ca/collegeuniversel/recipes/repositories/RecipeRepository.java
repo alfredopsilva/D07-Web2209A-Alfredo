@@ -15,7 +15,7 @@ public class RecipeRepository
     public RecipeRepository()
     {        
         String databaseName = "recipes_db";
-        connectionUrl = "jdbc:mariadb://localhost:3306/" + databaseName;
+        connectionUrl = "jdbc:mariadb://localhost:3315/" + databaseName;
         connectionUsername = "root";
         connectionPassword = "admin";
     }

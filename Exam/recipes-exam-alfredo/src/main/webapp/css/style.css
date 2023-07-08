@@ -258,3 +258,22 @@ a.button {
     max-width: 400px;
     margin: auto;
 }
+
+.recipe__box-like
+{
+    display: flex;
+    margin: 10px;
+}
+
+.recipe__like{
+    max-width: 80%;
+    margin: 25px auto;
+    border: 2px solid #a7a5a5;
+
+}
+
+.recipe__like.recipe__img
+{
+    max-width: 100px;
+    max-height: 150px;
+}

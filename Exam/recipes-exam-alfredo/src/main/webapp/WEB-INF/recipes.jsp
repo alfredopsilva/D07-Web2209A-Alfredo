@@ -27,6 +27,16 @@
             <a href="<%=request.getContextPath()%>/add" class="recipe__button">Add recipe</a>
         </div>
     </section>
+        <section class="recipe__like">
+            <%for(Recipe likeRecipe : likedRecipes) { %>
+                <div class="recipe__box-like">
+                    <img src="<%=likeRecipe.getImagePath()%>" class="recipe__img" alt="">
+                    <h4 class="recipe__subtitle"><%=likeRecipe.getName()%></h4>
+                    <a href="<%=request.getContextPath()%>/unlike?recipeId=<%=likeRecipe.getId()%>">Unlike</a>
+                </div>
+            <% } %>
+
+        </section>
     <section class="recipes">
         <fieldset class="recipe__categories">
             <legend>Categories</legend>
